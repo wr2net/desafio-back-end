@@ -1,19 +1,3 @@
-## Installation
-
-Install the latest version with
-
-```bash
-$ composer require wr2net/Desafio-Back-end
-```
-
-## Start Serve
-```bash
-$ php -S localhost:8888
-```
-
-## Basic Usage
-
-```php
 <?php
 header('Content-Type: application/json');
 include_once __DIR__ . "/vendor/autoload.php";
@@ -35,4 +19,3 @@ $response = Integration::transact('GET', $uri, $credentials);
 
 echo $response;
 exit;
-```

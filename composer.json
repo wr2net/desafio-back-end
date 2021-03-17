@@ -1,0 +1,43 @@
+{
+  "name": "wr2net/Desafio-Back-end",
+  "description": "Crie um plugin para Laravel e Lumen que execute uma chamada da nossa API no ambiente de sandbox.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wagner Rigoli da Rosa",
+      "email": "wagner@rigolisarosa.com"
+    }
+  ],
+  "require": {
+    "php": "~7.3",
+    "ext-json": "*",
+    "nesbot/carbon": "^2.0@dev",
+    "guzzlehttp/guzzle": "^7.3@dev",
+    "monolog/monolog": "2.x-dev"
+  },
+  "require-dev": {
+    "php": "~7.3",
+    "phpunit/phpunit": "^9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Alibin\\": [
+        "src",
+        "tests"
+      ]
+    }
+  },
+  "scripts": {
+    "full-tests-analytics": [
+      "phpunit --coverage-html storage/TestResults/"
+    ],
+    "full-tests": [
+      "phpunit --testdox tests/"
+    ],
+    "simple-full-tests": [
+      "phpunit tests/"
+    ]
+  },
+  "minimum-stability": "dev"
+}
