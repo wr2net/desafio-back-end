@@ -88,4 +88,4 @@ Wagner Rigoli da Rosa - <wagner@rigolidarosa.com> - <https://wagner.rigolidarosa
 
 ### License
 
-Desafio-Back-end is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+Desafio-Back-end is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details
