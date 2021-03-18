@@ -13,14 +13,18 @@ $credentials = [
 
 $params = [
     'page' => 0,
-    'per_page' => 50
+    'per_page' => 50,
+    'ref' => null,
+    'date' => null,
+    'sale' => null,
+    ''
 ];
 
 $connection = (new Initialize())->initialize($url, $credentials);
 /*
  * Get all sales
  */
-//echo Sales::getFullSales($connection);
+echo Sales::getFullSales($connection);
 
 /*
  * Cancel a sale

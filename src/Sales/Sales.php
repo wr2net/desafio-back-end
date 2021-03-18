@@ -23,11 +23,8 @@ class Sales implements SalesInterface
     public function getFullSales(array $data, array $params = null)
     {
         $method = 'GET';
-        $page = $params['page'] ?? 0;
-        $per_page = $params['per_page'] ?? 10;
-        $complement = 'page=' . $page . '&per_page=' . $per_page;
+        $complement = self::handlerParams($params);
         $uri = $data['url'] . self::ENDPOINT_GET . '?' . $complement;
-
         $response = Integration::transact($method, $uri, $data['credentials']);
 
         return self::handlerLog($response, $method);
@@ -119,5 +116,30 @@ class Sales implements SalesInterface
         }
         HandleLogs::handler($method . ' SALES SUCCESSFUL');
         return $response;
+    }
+
+    /**
+     * @param $params
+     * @return string
+     */
+    private function handlerParams($params)
+    {
+        $page = $params['page'] ?? 0;
+        $per_page = $params['per_page'] ?? 10;
+        $complement = 'page=' . $page . '&per_page=' . $per_page;
+
+        if (isset($params['ref']) && !is_null($params['ref'])) {
+            $complement .= '&nu_referencia=' . $params['ref'];
+        }
+
+        if (isset($params['date']) && !is_null($params['date'])) {
+            $complement .= '&dt_venda=' . $params['date'];
+        }
+
+        if (isset($params['sale']) && !is_null($params['sale'])) {
+            $complement .= '&nu_venda=' . $params['sale'];
+        }
+
+        return $complement;
     }
 }

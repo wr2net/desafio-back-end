@@ -3,12 +3,12 @@
 require __DIR__ . '/../../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
-use Alibin\Integration\Integration;
+use Alibin\Sales\SalesInterface as Sales;
 
 /**
- * Class IntegrationTest
+ * Class SalesTest
  */
-class IntegrationTest extends TestCase
+class SalesTest extends TestCase
 {
     /**
      * @var string
@@ -61,28 +61,5 @@ class IntegrationTest extends TestCase
     public function verifyContainsInstanceOfTransact()
     {
         $this->assertTrue(method_exists($this->integration, 'transact'), 'Method not found: transact()');
-    }
-
-    /**
-     * @test
-     */
-    public function verifySuccessForGetAllSales()
-    {
-        $endpoint = 'vendas?';
-        $uri = $this->url . $endpoint;
-        $response = $this->integration->transact('GET', $uri, $this->credentials);
-        $content = json_decode($response);
-        $this->assertTrue($content->success);
-    }
-
-    /**
-     * @test
-     */
-    public function verifyNotSuccessForGetAllSales()
-    {
-        $uri = $this->url;
-        $response = $this->integration->transact('GET', $uri, $this->credentials);
-        $content = json_decode($response);
-        $this->assertNotTrue($content);
     }
 }

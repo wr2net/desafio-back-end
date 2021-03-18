@@ -32,7 +32,10 @@ $credentials = [
  */
 $params = [
     'page' => 0,
-    'per_page' => 50
+    'per_page' => 50,
+    'ref' => null,
+    'date' => null,
+    'sale' => null,
 ];
 
 $connection = (new Initialize())->initialize($url, $credentials);
