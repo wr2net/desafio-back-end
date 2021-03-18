@@ -16,7 +16,7 @@ class Integration
      * @param string $endpoint
      * @param array $credentials
      * @param null $json
-     * @return \Psr\Http\Message\StreamInterface
+     * @return false|\Psr\Http\Message\StreamInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function transact(string $type, string $endpoint, array $credentials, $json = null)
@@ -29,12 +29,16 @@ class Integration
             'Client-key' => $credentials['CLIENT_KEY']
         ];
 
-        $response = $client->request($type, $endpoint, $headers);
-
-        if ($response->getStatusCode() == 200) {
-            $content = $response->getBody();
-            HandleLogs::handler($content);
-            return $content;
+        try {
+            $response = $client->request($type, $endpoint, $headers);
+            return $response->getBody();
+        } catch (\Exception $exception) {
+            return json_encode([
+                'success' => false,
+                'status' => $exception->getCode(),
+                'error' => 'We were unable to process your request. Please check the requested requirements.',
+                'message' => $exception->getMessage()
+            ]);
         }
     }
 }
