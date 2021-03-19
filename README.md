@@ -3,7 +3,7 @@
 Install the latest version with
 
 ```bash
-$ composer require wr2net/Desafio-Back-end
+$ composer require wr2net/desafio-back-end
 ```
 
 ## Start Serve (for tests in localhost)
@@ -90,7 +90,7 @@ $ tail -f storage/logs/2021-03-18.log
 
 ### Submitting bugs and feature requests
 
-Bugs and feature request are tracked on [GitHub](https://github.com/wr2net/Desafio-Back-end/issues)
+Bugs and feature request are tracked on [GitHub](https://github.com/wr2net/desafio-back-end/issues)
 
 ### Framework Integrations
 
