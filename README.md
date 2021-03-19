@@ -11,6 +11,11 @@ $ composer require wr2net/Desafio-Back-end
 $ php -S localhost:8888
 ```
 
+## Perform Unit Tests
+```bash
+$ composer test
+```
+
 ## Basic Usage
 
 ```php
@@ -65,6 +70,13 @@ echo Sales::clientsSale($connection);
  */
 echo Sales::quotaSales($connection);
 exit;
+```
+
+## Show Logs
+The logs are generated daily.<br />
+The file name is the date in the format `YYYY-MM-DD.log`
+```bash
+$ tail -f storage/logs/2021-03-18.log
 ```
 
 ## About

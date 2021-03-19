@@ -2,48 +2,24 @@
 header('Content-Type: application/json');
 include_once __DIR__ . "/vendor/autoload.php";
 
-use Alibin\Common\Initialize\Initialize;
-use Alibin\Sales\Sales;
+use Alibin\Common\Hosts\Hosts;
 
-$url = 'https://api-sandbox.fpay.me/';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$url = $_ENV['SANDBOX_URL'];
 $credentials = [
-    'CLIENT_CODE' => 'FC-SB-15',
-    'CLIENT_KEY' => '6ea297bc5e294666f6738e1d48fa63d2'
+    'CLIENT_CODE' => $_ENV['SANDBOX_CLIENT_CODE'],
+    'CLIENT_KEY' => $_ENV['SANDBOX_CLIENT_KEY']
 ];
-
 $params = [
     'page' => 0,
     'per_page' => 50,
     'ref' => null,
     'date' => null,
     'sale' => null,
-    ''
 ];
+$key = $_ENV['SANDBOX_SALE_KEY'];
 
-$connection = (new Initialize())->initialize($url, $credentials);
-/*
- * Get all sales
- */
-echo Sales::getFullSales($connection);
-
-/*
- * Cancel a sale
- */
-//echo Sales::cancelSale($connection, "4443-Tusj-yGXp");
-
-/*
- * Reversal a sale
- */
-//echo Sales::reversalSale($connection, "4443-Tusj-yGXp");
-
-/*
- * Get clients with yours documents
- */
-//echo Sales::clientsSale($connection);
-
-/*
- * Get quatas from sales
- */
-//echo Sales::quotaSales($connection);
-
+echo (new Hosts())->tools($url, $credentials, $params, $_SERVER["REQUEST_URI"], $key);
 exit;

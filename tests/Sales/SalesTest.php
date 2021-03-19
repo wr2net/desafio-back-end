@@ -3,7 +3,7 @@
 require __DIR__ . '/../../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
-use Alibin\Sales\SalesInterface as Sales;
+use Alibin\Sales\Sales;
 
 /**
  * Class SalesTest
@@ -21,14 +21,14 @@ class SalesTest extends TestCase
     protected $credentials;
 
     /**
-     * @var Integration
+     * @var Sales
      */
-    protected $integration;
+    protected $sales;
 
     /**
-     * @var integer
+     * @var array
      */
-    protected $page;
+    protected $params;
 
     /**
      * @var integer
@@ -37,29 +37,67 @@ class SalesTest extends TestCase
 
     public function setUp(): void
     {
-        $this->integration = new Integration;
+        $this->sales = new Alibin\Sales\Sales();
         $this->url = 'https://api-sandbox.fpay.me/';
-        $this->page = 0;
-        $this->per_page = 10;
         $this->credentials = [
             'CLIENT_CODE' => 'FC-SB-15',
             'CLIENT_KEY' => '6ea297bc5e294666f6738e1d48fa63d2'
+        ];
+
+        $this->params = [
+            'page' => 0,
+            'per_page' => 50,
+            'ref' => null,
+            'date' => null,
+            'sale' => null,
         ];
     }
 
     /**
      * @test
      */
-    public function verifyContainsInstanceOf()
+    public function verifyContainsInstanceOfSales()
     {
-        $this->assertInstanceOf(Integration::class, $this->integration);
+        $this->assertInstanceOf(Sales::class, $this->sales);
     }
 
     /**
      * @test
      */
-    public function verifyContainsInstanceOfTransact()
+    public function verifyContainsInstanceOfGetFullSales()
     {
-        $this->assertTrue(method_exists($this->integration, 'transact'), 'Method not found: transact()');
+        $this->assertTrue(method_exists($this->sales, 'getFullSales'), 'Method not found: getFullSales()');
+    }
+
+    /**
+     * @test
+     */
+    public function verifyContainsInstanceOfCancelSale()
+    {
+        $this->assertTrue(method_exists($this->sales, 'cancelSale'), 'Method not found: cancelSale()');
+    }
+
+    /**
+     * @test
+     */
+    public function verifyContainsInstanceOfReversalSale()
+    {
+        $this->assertTrue(method_exists($this->sales, 'reversalSale'), 'Method not found: reversalSale()');
+    }
+
+    /**
+     * @test
+     */
+    public function verifyContainsInstanceOfClientsSales()
+    {
+        $this->assertTrue(method_exists($this->sales, 'clientsSale'), 'Method not found: clientsSales()');
+    }
+
+    /**
+     * @test
+     */
+    public function verifyContainsInstanceOfQuotaSales()
+    {
+        $this->assertTrue(method_exists($this->sales, 'quotaSales'), 'Method not found: quotaSales()');
     }
 }
