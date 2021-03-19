@@ -6,6 +6,9 @@ Install the latest version with
 $ composer require wr2net/desafio-back-end
 ```
 
+## Generate .env
+Copy and Past .env-example to .env
+
 ## Start Serve (for tests in localhost)
 ```bash
 $ php -S localhost:8888
