@@ -1,5 +1,5 @@
 {
-  "name": "wr2net/Desafio-Back-end",
+  "name": "wr2net/desafio-back-end",
   "description": "Crie um plugin para Laravel e Lumen que execute uma chamada da nossa API no ambiente de sandbox.",
   "type": "library",
   "license": "MIT",
